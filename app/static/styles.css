@@ -1,0 +1,54 @@
+@import url("http://overpass-30e2.kxcdn.com/overpass.css");
+* { font-family: Overpass; }
+
+/* * * * * * for index.html * * * * * */
+.content {
+  margin: 2rem;
+}
+
+.nested_text {
+  margin: 1rem 0;
+}
+
+.login_form {
+  margin: 1rem 0;
+}
+
+.form_component {
+  margin: 0.5rem 0;
+}
+
+#submission_button {
+  margin-bottom: 2rem;
+}
+
+.detail_page {
+
+}
+
+.detail_title {
+  margin: 1rem auto;
+  font-weight:300;
+  font-size: 150%;
+}
+
+.detail_component {
+  margin: 0.5rem auto;
+}
+
+.detail_footer {
+  margin-top: 1rem;
+  font-weight:bolder;
+}
+
+.dataframe {
+  margin: auto;
+}
+
+th {
+  margin: 1rem;
+}
+
+td {
+  margin: 1rem;
+}
