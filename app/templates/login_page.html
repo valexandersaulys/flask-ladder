@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Login Here</h3>
+{% if session['user'] %}
+<hr> <!-- hr tags are dividing lines -->
+<div class="nested_text">
+    Hello {{session['user']}}! You've already logged in!
+    Go back to the main page <a href="{{url_for('display')}}">here</a>
+</div>
+<hr>
+{% endif %}
+<form action="{{url_for('login')}}" method="post" class="login_form">
+    <input type="hidden" name="csrf_token"
+      value="{{ csrf_token() }}" class="form_component"/>
+    <input type="name" name="username"
+      placeholder="username" class="form_component"/> <br/>
+    <input type="password" name="password"
+      placeholder="password" class="form_component"/> <br/>
+    <button type="submit" name="Execute" class="form_component">
+        Login
+    </button><br/>
+</form>
+
+{% endblock %}

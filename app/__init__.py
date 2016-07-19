@@ -1,5 +1,6 @@
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy  # alternatively, flask.ext.mongoengine
+from flask_sqlalchemy import SQLAlchemy
+# alternatively, from flask_mongoengine import MongoEngine
 import os
 from config import BASEDIR
 from flask_wtf.csrf import CsrfProtect
@@ -7,8 +8,11 @@ from flask_wtf.csrf import CsrfProtect
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
-CsrfProtect(app)  # necesary for protecting against CSRF, automatic in wtforms
+# db = MongoEngine(app) 
+CsrfProtect(app)  # automatic with WTF-forms
 
+# User Authentication Dictionary (would be Redis-cache in production)
+authhashes = {};
 
 # --------------------- Logging Errors
 import logging
@@ -18,7 +22,6 @@ file_handler.setLevel(10);
 app.logger.addHandler(file_handler);
 app.logger.setLevel(level=0);
 logger = app.logger
-
 
 
 # ==================== Start the App !
@@ -31,4 +34,5 @@ and within BASEDIR/app/simple_page/__init__.py
 >>> simple_page = Blueprint('simple_page, __name__, template_folder="templates")
 Then add simple_page routing like in the BASEDIR/app/
 """
-from app import views, models
+# I though below was >>> from app import views, models
+import views, models
