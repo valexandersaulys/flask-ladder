@@ -1,0 +1,27 @@
+stackoverflow.com/questions/10763171/can-sqlalchemy-be-used-with-google-cloud-sql#10900826
+--------
+Google Cloud SQL now supports direct access, so the MySQLdb dialect can now be used. The recommended connection via the mysql dialect is using the URL format:
+
+mysql+mysqldb://root@/<dbname>?unix_socket=/cloudsql/<projectid>:<instancename>
+
+mysql+gaerdbms has been deprecated in SQLAlchemy since version 1.0
+
+I'm leaving the original answer below in case others still find it helpful.
+
+For those who visit this question later (and don't want to read through all the comments), SQLAlchemy now supports Google Cloud SQL as of version 0.7.8 using the connection string / dialect (see: docs):
+
+mysql+gaerdbms:///<dbname>
+
+E.g.:
+
+create_engine('mysql+gaerdbms:///mydb', connect_args={"instance":"myinstance"})
+
+I have proposed an update to the mysql+gaerdmbs:// dialect to support both of Google Cloud SQL APIs (rdbms_apiproxy and rdbms_googleapi) for connecting to Cloud SQL from a non-Google App Engine production instance (ex. your development workstation). The change will also modify the connection string slightly by including the project and instance as part of the string, and not require being passed separately via connect_args.
+
+E.g.
+
+mysql+gaerdbms:///<dbname>?instance=<project:instance>
+
+This will also make it easier to use Cloud SQL with Flask-SQLAlchemy or other extension where you don't explicitly make the create_engine() call.
+
+If you are having trouble connecting to Google Cloud SQL from your development workstation, you might want to take a look at my answer here - http://stackoverflow.com/a/14287158/191902.

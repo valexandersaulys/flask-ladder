@@ -1,0 +1,23 @@
+http://stackoverflow.com/questions/21388921/subdomains-with-flask
+
+```
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Sweet home"
+
+@app.route("/some-route")
+def some_route():
+    return "on the default subdomain (generally, www, or unguarded)"
+
+@app.route("/", subdomain="blog")
+def blog_home():
+    return "Sweet blog"
+
+@app.route("/<page>", subdomain="blog")
+def blog_page(page):
+    return "can be dynamic: {}".format(page)
+```
+
+Then use blog.local.dev & local.dev to access

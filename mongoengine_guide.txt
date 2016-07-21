@@ -1,0 +1,26 @@
+Housekeep on MongoDB:
+-------
+db.createUser({ username:"",
+	password:"", 
+	roles:[ { role:"dbAdmin or readWrite",
+		db: "<name_of_database>" }, ... ]
+	} );
+db.getUsers(); # to get users
+show dbs  # to show users
+db.updateUser("name_of_user", { roles: [ {role: '', db: '' },... ] });
+Call "$ mongo < name_of_script.js" to call scripts
+
+---------------------------------------------------------------------------(78)
+This is a guide for using Mongoengine.
+
+Import the document model itself (subclassed under db.Document), and call
+.save() for saving the document and .objects to return the objects.
+```
+>>> User.objects
+[<User u'vasaulys'>]
+```
+
+Also, call .to_mongo() to create a 'SON' object and .to_dict() to output
+to a python dictionary. From here, one should be able to call jsonify()
+from the flask library to output to json. This function is used in a view
+function, like render_template()
