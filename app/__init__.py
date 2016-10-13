@@ -29,8 +29,10 @@ logger = app.logger
 blueprints live just below the app/ folder as subfolders with a similar 
 layout to the BASEDIR/app/ folder. 
 >>> from app.simple_page import simple_page
+
 >>> app.register_blueprint(simple_page)
 and within BASEDIR/app/simple_page/__init__.py
+
 >>> simple_page = Blueprint('simple_page, __name__, template_folder="templates")
 Then add simple_page routing like in the BASEDIR/app/
 """
