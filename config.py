@@ -5,12 +5,12 @@ BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
 # = = = = = = = For the Database Configuration
 # Separate out into a 'db_config.py' for larger projects
-if os.environ.get('DATABASE_URL') is None:
+if os.environ.get('DATABASE_URI') is None:
     DATABASE_URL = 'sqlite:///' + os.path.join(BASEDIR, 'app.db')
     SQLALCHEMY_MIGRATE_REPO = os.path.join(BASEDIR, 'db_repository')
     SQLALCHEMY_TRACK_MODIFICATIONS = True;
 else:
-    DATABASE_URL = os.environ['DATABASE_URL'];  # could be mongodb
+    DATABASE_URL = os.environ['DATABASE_URI'];  # could be mongodb
 
 """
 Sample MongoDB Setup, if the URL is not specified as an environement variable
