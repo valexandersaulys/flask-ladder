@@ -3,13 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 # alternatively, from flask_mongoengine import MongoEngine
 import os
 from config import BASEDIR
-from flask_wtf.csrf import CsrfProtect
 
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
 # db = MongoEngine(app) 
-CsrfProtect(app)  # automatic with WTF-forms
 
 # User Authentication Dictionary (would be Redis-cache in production)
 authhashes = {};
@@ -37,4 +35,5 @@ and within BASEDIR/app/simple_page/__init__.py
 Then add simple_page routing like in the BASEDIR/app/
 """
 # I though below was >>> from app import views, models
+import csrf_protect
 import views, models
